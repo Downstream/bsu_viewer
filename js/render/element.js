@@ -17,7 +17,9 @@ export default class Element {
     static link(action, content, classname) {
         let link = Element.create('a',classname)
 
-        if (typeof action === 'string' || action instanceof String) {
+        if (action instanceof URL) {
+            link.attr('href', action.href)
+        } else if (typeof action === 'string' || action instanceof String) {
             link.attr('href',action)
         } else if (typeof action === "function")  {
             link.on('click', action)
